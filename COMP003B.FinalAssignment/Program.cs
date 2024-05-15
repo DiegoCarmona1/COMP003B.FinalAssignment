@@ -1,5 +1,5 @@
-using COMP003B.FinalAssignment.Data
-using Microsoft.EntityFrameworkCore
+using COMP003B.FinalAssignment.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace COMP003B.FinalAssignment
 {
