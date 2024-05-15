@@ -1,3 +1,6 @@
+using COMP003B.FinalAssignment.Data
+using Microsoft.EntityFrameworkCore
+
 namespace COMP003B.FinalAssignment
 {
     public class Program
@@ -8,6 +11,9 @@ namespace COMP003B.FinalAssignment
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<WebDevAcademyContext>(options =>
+                options.UseSqlServer("Name=ConnectionStrings:DefaultConnection"));
 
             var app = builder.Build();
 
