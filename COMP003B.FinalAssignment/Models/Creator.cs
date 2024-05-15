@@ -2,11 +2,8 @@
 
 namespace COMP003B.FinalAssignment.Models
 {
-    public class Creator : Controller
+    public class Creator
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        public 
     }
 }
