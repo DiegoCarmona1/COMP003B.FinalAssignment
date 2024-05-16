@@ -13,9 +13,9 @@ namespace COMP003B.FinalAssignment.Data
 
         public DbSet<Creator> Creators { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
-        public DbSet<DailyMeal> DailyMeals { get; set; }
-        public DbSet<SeasonalMeal> SeasonalMeals { get; set; }
-        public DbSet<HolidayMeal> HolidayMeals { get; set; }
+        public DbSet<Daily> Dailys { get; set; }
+        public DbSet<Seasonal> Seasonals { get; set; }
+        public DbSet<Holiday> Holidays { get; set; }
     }
 }
 

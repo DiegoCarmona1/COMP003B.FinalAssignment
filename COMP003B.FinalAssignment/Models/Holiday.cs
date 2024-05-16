@@ -2,7 +2,7 @@
 
 namespace COMP003B.FinalAssignment.Models
 {
-    public class HolidayMeal
+    public class Holiday
     {
         public int HolidayId { get; set; }
         public int CreatorId { get; set; }

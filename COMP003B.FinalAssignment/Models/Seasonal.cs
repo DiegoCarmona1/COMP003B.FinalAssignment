@@ -2,9 +2,9 @@
 
 namespace COMP003B.FinalAssignment.Models
 {
-    public class DailyMeal 
+    public class Seasonal
     {
-        public int DailyId { get; set; }
+        public int SeasonalId { get; set; }
         public int CreatorId { get; set; }
         public int RecipeId { get; set; }
 

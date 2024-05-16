@@ -10,8 +10,8 @@ namespace COMP003B.FinalAssignment.Models
         [Required]
         public string Name { get; set; }
 
-        public virtual ICollection<DailyMeal>? DailyMeals { get; set; }
-        public virtual ICollection<SeasonalMeal>? SeasonalMeals { get; set; }
-        public virtual ICollection<HolidayMeal>? HolidayMeals { get; set; }
+        public virtual ICollection<Daily>? DailyMeals { get; set; }
+        public virtual ICollection<Seasonal>? SeasonalMeals { get; set; }
+        public virtual ICollection<Holiday>? HolidayMeals { get; set; }
     }
 }
