@@ -19,4 +19,4 @@ namespace COMP003B.FinalAssignment.Data
         public DbSet<HolidayMeal> HolidayMeals { get; set; }
     }
 }
-}
+
