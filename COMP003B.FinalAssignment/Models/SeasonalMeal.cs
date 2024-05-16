@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
 
 namespace COMP003B.FinalAssignment.Models
 {
-    public class SeasonalMeal : Controller
+    public class SeasonalMeal
     {
         public int SeasonalId { get; set; }
         public int CreatorId { get; set; }

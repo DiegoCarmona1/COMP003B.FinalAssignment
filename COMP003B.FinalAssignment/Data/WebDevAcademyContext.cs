@@ -1,5 +1,4 @@
 ﻿using COMP003B.FinalAssignment.Models;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace COMP003B.FinalAssignment.Data
