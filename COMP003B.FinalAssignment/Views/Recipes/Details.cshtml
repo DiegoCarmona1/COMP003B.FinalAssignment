@@ -18,6 +18,17 @@
         </dd>
     </dl>
 </div>
+
+<div class="col-md-4">
+    <h4>Creators</h4>
+    <ul>
+        @foreach (Creator creator in ViewBag.Creators)
+        {
+            <li>@creator.Name</li>
+        }
+    </ul>
+</div>
+
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.RecipeId">Edit</a> |
     <a asp-action="Index">Back to List</a>
