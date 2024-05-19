@@ -26,7 +26,7 @@ namespace COMP003B.FinalAssignment.Controllers
         [HttpGet("(id)")]
         public ActionResult<Seasonal> GetSeasonalById(int id)
         {
-            var seasonal = _seasonals.FirstOrDefault(s = s.SeasonalId == id);
+            var seasonal = _seasonals.FirstOrDefault(s => s.SeasonalId == id);
 
             if (seasonal == null)
             {
@@ -46,7 +46,7 @@ namespace COMP003B.FinalAssignment.Controllers
         [HttpPut]
         public ActionResult<Seasonal> UpdateSeasonal(int id, Seasonal updateSeasonal)
         {
-            var seasonal = _seasonals.Find(s = s.SeasonalId == id);
+            var seasonal = _seasonals.Find(s => s.SeasonalId == id);
 
             if (seasonal == null)
             {
@@ -61,7 +61,7 @@ namespace COMP003B.FinalAssignment.Controllers
         [HttpDelete]
         public ActionResult DeleteSeasonal(int id)
         {
-            var seasonal = _seasonals.Find(s = s.SeasonalId == id);
+            var seasonal = _seasonals.Find(s => s.SeasonalId == id);
             if (seasonal == null)
             {
                 return NotFound();

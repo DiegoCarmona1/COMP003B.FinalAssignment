@@ -26,7 +26,7 @@ namespace COMP003B.FinalAssignment.Controllers
         [HttpGet("(id)")]
         public ActionResult<Creator> GetCreatorById(int id)
         {
-            var creator = _creators.FirstOrDefault(c = c.CreatorId == id);
+            var creator = _creators.FirstOrDefault(c => c.CreatorId == id);
 
             if (creator == null)
             {
@@ -46,7 +46,7 @@ namespace COMP003B.FinalAssignment.Controllers
         [HttpPut]
         public ActionResult<Creator> UpdateCreator(int id, Creator updateCreator)
         {
-            var seasonal = _creators.Find(c = c.CreratorId == id);
+            var seasonal = _creators.Find(c => c.CreatorId == id);
 
             if (seasonal == null)
             {
@@ -61,7 +61,7 @@ namespace COMP003B.FinalAssignment.Controllers
         [HttpDelete]
         public ActionResult DeleteCreator(int id)
         {
-            var creator = _creators.Find(c = c.CreatorId == id);
+            var creator = _creators.Find(c => c.CreatorId == id);
             if (creator == null)
             {
                 return NotFound();

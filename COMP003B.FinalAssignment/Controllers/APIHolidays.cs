@@ -26,7 +26,7 @@ namespace COMP003B.FinalAssignment.Controllers
         [HttpGet("(id)")]
         public ActionResult<Holiday> GetHolidayById(int id)
         {
-            var holiday = _holidays.FirstOrDefault(h = h.HolidayId == id);
+            var holiday = _holidays.FirstOrDefault(h => h.HolidayId == id);
 
             if (holiday == null)
             {
@@ -46,7 +46,7 @@ namespace COMP003B.FinalAssignment.Controllers
         [HttpPut]
         public ActionResult<Holiday> UpdateHoliday(int id, Holiday updateHoliday)
         {
-            var holiday = _holidays.Find(h = h.HolidayId == id);
+            var holiday = _holidays.Find(h => h.HolidayId == id);
 
             if (holiday == null)
             {
@@ -61,7 +61,7 @@ namespace COMP003B.FinalAssignment.Controllers
         [HttpDelete]
         public ActionResult DeleteHoliday(int id)
         {
-            var holiday = _holidays.Find(h = h.HolidayId == id);
+            var holiday = _holidays.Find(h => h.HolidayId == id);
             if (holiday == null)
             {
                 return NotFound();

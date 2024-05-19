@@ -1,4 +1,4 @@
-﻿
+﻿using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 namespace COMP003B.FinalAssignment.Models

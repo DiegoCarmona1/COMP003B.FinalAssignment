@@ -26,7 +26,7 @@ namespace COMP003B.FinalAssignment.Controllers
         [HttpGet("(id)")]
         public ActionResult<Recipe> GetRecipeById(int id)
         {
-            var recipe = _recipes.FirstOrDefault(r = r.RecipeId == id);
+            var recipe = _recipes.FirstOrDefault(r => r.RecipeId == id);
 
             if (recipe == null)
             {
@@ -46,7 +46,7 @@ namespace COMP003B.FinalAssignment.Controllers
         [HttpPut]
         public ActionResult<Recipe> UpdateRecipe(int id, Recipe updateRecipe)
         {
-            var recipe = _recipes.Find(r = r.RecipeId == id);
+            var recipe = _recipes.Find(r => r.RecipeId == id);
 
             if (recipe == null)
             {
@@ -61,7 +61,7 @@ namespace COMP003B.FinalAssignment.Controllers
         [HttpDelete]
         public ActionResult DeleteRecipe(int id)
         {
-            var recipe = _recipes.Find(r = r.RecipeId == id);
+            var recipe = _recipes.Find(r => r.RecipeId == id);
             if (recipe == null)
             {
                 return NotFound();

@@ -26,7 +26,7 @@ namespace COMP003B.FinalAssignment.Controllers
         [HttpGet("(id)")]
         public ActionResult<Daily> GetDailyById(int id)
         {
-            var daily = _dailies.FirstOrDefault(d = d.DailyId == id);
+            var daily = _dailies.FirstOrDefault(d => d.DailyId == id);
 
             if (daily == null)
             {
@@ -46,7 +46,7 @@ namespace COMP003B.FinalAssignment.Controllers
         [HttpPut]
         public ActionResult<Daily> UpdateDaily(int id, Daily updateDaily)
         {
-            var daily = _dailies.Find(d = d.DailyId == id);
+            var daily = _dailies.Find(d => d.DailyId == id);
 
             if (daily == null)
             {
@@ -61,7 +61,7 @@ namespace COMP003B.FinalAssignment.Controllers
         [HttpDelete]
         public ActionResult DeleteDaily(int id)
         {
-            var daily = _dailies.Find(d = d.DailyId == id);
+            var daily = _dailies.Find(d => d.DailyId == id);
             if (daily == null)
             {
                 return NotFound();
