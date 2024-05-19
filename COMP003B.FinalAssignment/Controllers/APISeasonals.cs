@@ -11,10 +11,10 @@ namespace COMP003B.FinalAssignment.Controllers
 
         public APISeasonals()
         {
-            _seasonals.Add(new Seasonal { SeasonalId = 1, SeasonalName = "Spring" });
-            _seasonals.Add(new Seasonal { SeasonalId = 2, SeasonalName = "Summer" });
-            _seasonals.Add(new Seasonal { SeasonalId = 3, SeasonalName = "Fall" });
-            _seasonals.Add(new Seasonal { SeasonalId = 4, SeasonalName = "Winter" });
+            _seasonals.Add(new Seasonal { SeasonalId = 1 });
+            _seasonals.Add(new Seasonal { SeasonalId = 2 });
+            _seasonals.Add(new Seasonal { SeasonalId = 3 });
+            _seasonals.Add(new Seasonal { SeasonalId = 4 });
         }
 
         [HttpGet]
@@ -53,7 +53,7 @@ namespace COMP003B.FinalAssignment.Controllers
                 return BadRequest();
             }
 
-            seasonal.SeasonalName = updateSeasonal.SeasonalName;
+            
 
             return NoContent();
         }

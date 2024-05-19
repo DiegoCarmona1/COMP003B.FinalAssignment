@@ -11,10 +11,10 @@ namespace COMP003B.FinalAssignment.Controllers
 
         public APIDailies()
         {
-            _dailies.Add(new Daily { DailyId = 1, MealTime = "Spring" });
-            _dailies.Add(new Daily { DailyId = 2, MealTime = "Summer" });
-            _dailies.Add(new Daily { DailyId = 3, MealTime = "Fall" });
-            _dailies.Add(new Daily { DailyId = 4, MealTime = "Winter" });
+            _dailies.Add(new Daily { DailyId = 1 });
+            _dailies.Add(new Daily { DailyId = 2 });
+            _dailies.Add(new Daily { DailyId = 3 });
+            _dailies.Add(new Daily { DailyId = 4 });
         }
 
         [HttpGet]
@@ -53,7 +53,7 @@ namespace COMP003B.FinalAssignment.Controllers
                 return BadRequest();
             }
 
-            daily.MealTime = updateDaily.MealTime;
+            
 
             return NoContent();
         }

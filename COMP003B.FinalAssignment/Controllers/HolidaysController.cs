@@ -22,7 +22,8 @@ namespace COMP003B.FinalAssignment.Controllers
         // GET: Holidays
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Holidays.ToListAsync());
+            var webDevAcademyContext = _context.Holidays.Include(h => h.Creators).Include(h => h.Recipes);
+            return View(await webDevAcademyContext.ToListAsync());
         }
 
         // GET: Holidays/Details/5
@@ -34,6 +35,8 @@ namespace COMP003B.FinalAssignment.Controllers
             }
 
             var holiday = await _context.Holidays
+                .Include(h => h.Creators)
+                .Include(h => h.Recipes)
                 .FirstOrDefaultAsync(m => m.HolidayId == id);
             if (holiday == null)
             {
@@ -46,6 +49,8 @@ namespace COMP003B.FinalAssignment.Controllers
         // GET: Holidays/Create
         public IActionResult Create()
         {
+            ViewData["CreatorId"] = new SelectList(_context.Creators, "CreatorId", "Holiday");
+            ViewData["RecipeId"] = new SelectList(_context.Recipes, "RecipeId", "RecipeName");
             return View();
         }
 
@@ -54,7 +59,7 @@ namespace COMP003B.FinalAssignment.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("HolidayId,HolidayName,CreatorId,RecipeId")] Holiday holiday)
+        public async Task<IActionResult> Create([Bind("HolidayId,CreatorId,RecipeId")] Holiday holiday)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +67,8 @@ namespace COMP003B.FinalAssignment.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CreatorId"] = new SelectList(_context.Creators, "CreatorId", "Holiday", holiday.CreatorId);
+            ViewData["RecipeId"] = new SelectList(_context.Recipes, "RecipeId", "RecipeName", holiday.RecipeId);
             return View(holiday);
         }
 
@@ -78,6 +85,8 @@ namespace COMP003B.FinalAssignment.Controllers
             {
                 return NotFound();
             }
+            ViewData["CreatorId"] = new SelectList(_context.Creators, "CreatorId", "Holiday", holiday.CreatorId);
+            ViewData["RecipeId"] = new SelectList(_context.Recipes, "RecipeId", "RecipeName", holiday.RecipeId);
             return View(holiday);
         }
 
@@ -86,7 +95,7 @@ namespace COMP003B.FinalAssignment.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("HolidayId,HolidayName,CreatorId,RecipeId")] Holiday holiday)
+        public async Task<IActionResult> Edit(int id, [Bind("HolidayId,CreatorId,RecipeId")] Holiday holiday)
         {
             if (id != holiday.HolidayId)
             {
@@ -113,6 +122,8 @@ namespace COMP003B.FinalAssignment.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CreatorId"] = new SelectList(_context.Creators, "CreatorId", "Holiday", holiday.CreatorId);
+            ViewData["RecipeId"] = new SelectList(_context.Recipes, "RecipeId", "RecipeName", holiday.RecipeId);
             return View(holiday);
         }
 
@@ -125,6 +136,8 @@ namespace COMP003B.FinalAssignment.Controllers
             }
 
             var holiday = await _context.Holidays
+                .Include(h => h.Creators)
+                .Include(h => h.Recipes)
                 .FirstOrDefaultAsync(m => m.HolidayId == id);
             if (holiday == null)
             {

@@ -11,10 +11,10 @@ namespace COMP003B.FinalAssignment.Controllers
 
         public APIHolidays()
         {
-            _holidays.Add(new Holiday { HolidayId = 1, HolidayName = "New Years" });
-            _holidays.Add(new Holiday { HolidayId = 2, HolidayName = "Halloween" });
-            _holidays.Add(new Holiday { HolidayId = 3, HolidayName = "Christmas" });
-            _holidays.Add(new Holiday { HolidayId = 4, HolidayName = "Valentines" });
+            _holidays.Add(new Holiday { HolidayId = 1 });
+            _holidays.Add(new Holiday { HolidayId = 2 });
+            _holidays.Add(new Holiday { HolidayId = 3 });
+            _holidays.Add(new Holiday { HolidayId = 4 });
         }
 
         [HttpGet]
@@ -53,7 +53,7 @@ namespace COMP003B.FinalAssignment.Controllers
                 return BadRequest();
             }
 
-            holiday.HolidayName = updateHoliday.HolidayName;
+            
 
             return NoContent();
         }

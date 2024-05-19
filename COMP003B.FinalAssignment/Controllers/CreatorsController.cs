@@ -40,13 +40,13 @@ namespace COMP003B.FinalAssignment.Controllers
                 return NotFound();
             }
 
-            ViewBag.Recipes = from s in _context.Creators
-                              join e in _context.Dailys on s.CreatorId equals e.CreatorId
-                              join a in _context.Seasonals on s.CreatorId equals a.CreatorId
-                              join b in _context.Holidays on s.CreatorId equals b.CreatorId
-                              join c in _context.Recipes on e.RecipeId equals c.RecipeId
-                              where s.CreatorId == id
-                              select c;
+            ViewBag.Recipes = from s in _context.Recipes
+                              join e in _context.Dailys on s.RecipeId equals e.RecipeId
+                              join d in _context.Seasonals on s.RecipeId equals d.RecipeId
+                              join f in _context.Holidays on s.RecipeId equals f.RecipeId
+                              join c in _context.Creators on e.CreatorId equals c.CreatorId
+                              where c.CreatorId == id
+                              select s;
 
             return View(creator);
         }
@@ -62,7 +62,7 @@ namespace COMP003B.FinalAssignment.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CreatorId,Name")] Creator creator)
+        public async Task<IActionResult> Create([Bind("CreatorId,Name,MealTime,Holiday,Season")] Creator creator)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +94,7 @@ namespace COMP003B.FinalAssignment.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CreatorId,Name")] Creator creator)
+        public async Task<IActionResult> Edit(int id, [Bind("CreatorId,Name,MealTime,Holiday,Season")] Creator creator)
         {
             if (id != creator.CreatorId)
             {

@@ -22,7 +22,8 @@ namespace COMP003B.FinalAssignment.Controllers
         // GET: Seasonals
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Seasonals.ToListAsync());
+            var webDevAcademyContext = _context.Seasonals.Include(s => s.Creators).Include(s => s.Recipes);
+            return View(await webDevAcademyContext.ToListAsync());
         }
 
         // GET: Seasonals/Details/5
@@ -34,6 +35,8 @@ namespace COMP003B.FinalAssignment.Controllers
             }
 
             var seasonal = await _context.Seasonals
+                .Include(s => s.Creators)
+                .Include(s => s.Recipes)
                 .FirstOrDefaultAsync(m => m.SeasonalId == id);
             if (seasonal == null)
             {
@@ -46,6 +49,8 @@ namespace COMP003B.FinalAssignment.Controllers
         // GET: Seasonals/Create
         public IActionResult Create()
         {
+            ViewData["CreatorId"] = new SelectList(_context.Creators, "CreatorId", "Season");
+            ViewData["RecipeId"] = new SelectList(_context.Recipes, "RecipeId", "RecipeName");
             return View();
         }
 
@@ -54,7 +59,7 @@ namespace COMP003B.FinalAssignment.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SeasonalId,SeasonalName,CreatorId,RecipeId")] Seasonal seasonal)
+        public async Task<IActionResult> Create([Bind("SeasonalId,CreatorId,RecipeId")] Seasonal seasonal)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +67,8 @@ namespace COMP003B.FinalAssignment.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CreatorId"] = new SelectList(_context.Creators, "CreatorId", "Season", seasonal.CreatorId);
+            ViewData["RecipeId"] = new SelectList(_context.Recipes, "RecipeId", "RecipeName", seasonal.RecipeId);
             return View(seasonal);
         }
 
@@ -78,6 +85,8 @@ namespace COMP003B.FinalAssignment.Controllers
             {
                 return NotFound();
             }
+            ViewData["CreatorId"] = new SelectList(_context.Creators, "CreatorId", "Season", seasonal.CreatorId);
+            ViewData["RecipeId"] = new SelectList(_context.Recipes, "RecipeId", "RecipeName", seasonal.RecipeId);
             return View(seasonal);
         }
 
@@ -86,7 +95,7 @@ namespace COMP003B.FinalAssignment.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("SeasonalId,SeasonalName,CreatorId,RecipeId")] Seasonal seasonal)
+        public async Task<IActionResult> Edit(int id, [Bind("SeasonalId,CreatorId,RecipeId")] Seasonal seasonal)
         {
             if (id != seasonal.SeasonalId)
             {
@@ -113,6 +122,8 @@ namespace COMP003B.FinalAssignment.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CreatorId"] = new SelectList(_context.Creators, "CreatorId", "Season", seasonal.CreatorId);
+            ViewData["RecipeId"] = new SelectList(_context.Recipes, "RecipeId", "RecipeName", seasonal.RecipeId);
             return View(seasonal);
         }
 
@@ -125,6 +136,8 @@ namespace COMP003B.FinalAssignment.Controllers
             }
 
             var seasonal = await _context.Seasonals
+                .Include(s => s.Creators)
+                .Include(s => s.Recipes)
                 .FirstOrDefaultAsync(m => m.SeasonalId == id);
             if (seasonal == null)
             {

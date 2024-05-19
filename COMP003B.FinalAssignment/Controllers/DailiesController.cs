@@ -22,7 +22,8 @@ namespace COMP003B.FinalAssignment.Controllers
         // GET: Dailies
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Dailys.ToListAsync());
+            var webDevAcademyContext = _context.Dailys.Include(d => d.Creators).Include(d => d.Recipes);
+            return View(await webDevAcademyContext.ToListAsync());
         }
 
         // GET: Dailies/Details/5
@@ -34,6 +35,8 @@ namespace COMP003B.FinalAssignment.Controllers
             }
 
             var daily = await _context.Dailys
+                .Include(d => d.Creators)
+                .Include(d => d.Recipes)
                 .FirstOrDefaultAsync(m => m.DailyId == id);
             if (daily == null)
             {
@@ -46,6 +49,8 @@ namespace COMP003B.FinalAssignment.Controllers
         // GET: Dailies/Create
         public IActionResult Create()
         {
+            ViewData["CreatorId"] = new SelectList(_context.Creators, "CreatorId", "MealTime");
+            ViewData["RecipeId"] = new SelectList(_context.Recipes, "RecipeId", "RecipeName");
             return View();
         }
 
@@ -54,7 +59,7 @@ namespace COMP003B.FinalAssignment.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DailyId,MealTime,CreatorId,RecipeId")] Daily daily)
+        public async Task<IActionResult> Create([Bind("DailyId,CreatorId,RecipeId")] Daily daily)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +67,8 @@ namespace COMP003B.FinalAssignment.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CreatorId"] = new SelectList(_context.Creators, "CreatorId", "MealTime", daily.CreatorId);
+            ViewData["RecipeId"] = new SelectList(_context.Recipes, "RecipeId", "RecipeName", daily.RecipeId);
             return View(daily);
         }
 
@@ -78,6 +85,8 @@ namespace COMP003B.FinalAssignment.Controllers
             {
                 return NotFound();
             }
+            ViewData["CreatorId"] = new SelectList(_context.Creators, "CreatorId", "MealTime", daily.CreatorId);
+            ViewData["RecipeId"] = new SelectList(_context.Recipes, "RecipeId", "RecipeName", daily.RecipeId);
             return View(daily);
         }
 
@@ -86,7 +95,7 @@ namespace COMP003B.FinalAssignment.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DailyId,MealTime,CreatorId,RecipeId")] Daily daily)
+        public async Task<IActionResult> Edit(int id, [Bind("DailyId,CreatorId,RecipeId")] Daily daily)
         {
             if (id != daily.DailyId)
             {
@@ -113,6 +122,8 @@ namespace COMP003B.FinalAssignment.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CreatorId"] = new SelectList(_context.Creators, "CreatorId", "MealTime", daily.CreatorId);
+            ViewData["RecipeId"] = new SelectList(_context.Recipes, "RecipeId", "RecipeName", daily.RecipeId);
             return View(daily);
         }
 
@@ -125,6 +136,8 @@ namespace COMP003B.FinalAssignment.Controllers
             }
 
             var daily = await _context.Dailys
+                .Include(d => d.Creators)
+                .Include(d => d.Recipes)
                 .FirstOrDefaultAsync(m => m.DailyId == id);
             if (daily == null)
             {

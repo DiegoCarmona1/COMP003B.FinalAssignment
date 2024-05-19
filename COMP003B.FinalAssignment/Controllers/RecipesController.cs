@@ -40,13 +40,13 @@ namespace COMP003B.FinalAssignment.Controllers
                 return NotFound();
             }
 
-            ViewBag.Creators = from s in _context.Creators
-                              join e in _context.Dailys on s.CreatorId equals e.CreatorId
-                              join a in _context.Seasonals on s.CreatorId equals a.CreatorId
-                              join b in _context.Holidays on s.CreatorId equals b.CreatorId
-                              join c in _context.Recipes on e.RecipeId equals c.RecipeId
-                              where c.RecipeId == id
-                              select s;
+            ViewBag.Creators = from s in _context.Recipes
+                              join e in _context.Dailys on s.RecipeId equals e.RecipeId
+                              join d in _context.Seasonals on s.RecipeId equals d.RecipeId
+                              join f in _context.Holidays on s.RecipeId equals f.RecipeId
+                              join c in _context.Creators on e.CreatorId equals c.CreatorId
+                              where s.RecipeId == id
+                              select c;
 
             return View(recipe);
         }

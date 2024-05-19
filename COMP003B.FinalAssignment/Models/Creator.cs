@@ -9,6 +9,12 @@ namespace COMP003B.FinalAssignment.Models
 
         [Required]
         public string Name { get; set; }
+        [Required]
+        public string MealTime { get; set; }
+        [Required]
+        public string Holiday { get; set; }
+        [Required]
+        public string Season { get; set; }
 
         public virtual ICollection<Daily>? DailyMeals { get; set; }
         public virtual ICollection<Seasonal>? SeasonalMeals { get; set; }
