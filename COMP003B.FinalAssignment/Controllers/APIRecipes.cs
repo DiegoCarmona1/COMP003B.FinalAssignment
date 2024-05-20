@@ -11,10 +11,10 @@ namespace COMP003B.FinalAssignment.Controllers
 
         public APIRecipes()
         {
-            _recipes.Add(new Recipe { RecipeId = 1, RecipeName = "Spring" });
-            _recipes.Add(new Recipe {RecipeId = 2, RecipeName = "Summer" });
-            _recipes.Add(new Recipe {RecipeId = 3, RecipeName = "Fall" });
-            _recipes.Add(new Recipe {RecipeId = 4, RecipeName = "Winter" });
+            _recipes.Add(new Recipe { RecipeId = 1, RecipeName = "Green Bean Cassarole" });
+            _recipes.Add(new Recipe {RecipeId = 2, RecipeName = "Chocolate Chip" });
+            _recipes.Add(new Recipe {RecipeId = 3, RecipeName = "Tiramisu" });
+            _recipes.Add(new Recipe {RecipeId = 4, RecipeName = "Ceasar Salad" });
         }
 
         [HttpGet]

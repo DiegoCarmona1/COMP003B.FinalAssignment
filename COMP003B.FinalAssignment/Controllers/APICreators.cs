@@ -11,10 +11,10 @@ namespace COMP003B.FinalAssignment.Controllers
 
         public APICreators()
         {
-            _creators.Add(new Creator { CreatorId = 1, Name = "Spring" });
-            _creators.Add(new Creator { CreatorId = 2, Name = "Summer" });
-            _creators.Add(new Creator { CreatorId = 3, Name = "Fall" });
-            _creators.Add(new Creator { CreatorId = 4, Name = "Winter" });
+            _creators.Add(new Creator { CreatorId = 1, Name = "Dorcas Reily", MealTime = "Dinner", Holiday = "Thanksgiving", Season = "Fall" });
+            _creators.Add(new Creator { CreatorId = 2, Name = "Ruth Wakefeild", MealTime = "Dessert", Holiday = "Christmas", Season = "Winter" });
+            _creators.Add(new Creator {CreatorId = 3, Name = "Roberto Linguinotto", MealTime = "Desert", Holiday = "World Tiramisu", Season = "Spring" });
+            _creators.Add(new Creator {CreatorId = 4, Name = "Ceasar Cardini", MealTime = "Appetizer", Holiday = "Cinco de Mayo", Season = "Spring" });
         }
 
         [HttpGet]
@@ -46,14 +46,18 @@ namespace COMP003B.FinalAssignment.Controllers
         [HttpPut]
         public ActionResult<Creator> UpdateCreator(int id, Creator updateCreator)
         {
-            var seasonal = _creators.Find(c => c.CreatorId == id);
+            var creator = _creators.Find(c => c.CreatorId == id);
 
-            if (seasonal == null)
+            if (creator == null)
             {
                 return BadRequest();
             }
 
-            seasonal.Name = updateCreator.Name;
+            creator.Name = updateCreator.Name;
+            creator.MealTime = updateCreator.MealTime;
+            creator.Season = updateCreator.Season;
+            creator.Holiday = updateCreator.Holiday;
+            
 
             return NoContent();
         }
